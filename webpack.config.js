@@ -19,7 +19,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: './src/main.wasm', to: './' } // output path is 'public' folder, already defined.
+        { from: './src/main.wasm', to: './' }, // output path is 'public' folder, already defined.
+        { from: './src/styles.css', to: './' }
       ]
     })
   ]
