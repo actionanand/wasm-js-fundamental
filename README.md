@@ -6,3 +6,7 @@ This is the basic js program with wasm
 ```bash
 npm run serve
 ```
+
+## Source
+
+  * [wat2wasm demo](https://webassembly.github.io/wabt/demo/wat2wasm/)
