@@ -10,3 +10,16 @@
   <p>Example for web assembly code!</p>
 </body>
 </html>
+
+<!-- (module
+  (import "console" "log" (func $myLog))
+  (import "console" "error" (func $myErrorLog))
+  (func $sum (param $a i32) (param $b i32) (result i32)
+    call $myLog
+    call $myErrorLog
+    local.get $a
+    local.get $b
+    i32.add
+  )
+  (export "sum" (func $sum))
+) -->
