@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "serve": "webpack serve --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "deploy": "gh-pages -d public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actionanand/wasm-js-fundamental"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +20,7 @@
     "webpack-cli": "^4.9.1"
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "webpack-dev-server": "^4.7.2"
   }
