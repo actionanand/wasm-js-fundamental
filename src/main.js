@@ -1,7 +1,13 @@
 // alert("Hello Wasm World!");
 async function init() {
 
+  // js memory for wasm
+  const jsMemory = new WebAssembly.Memory({ initial: 1 }); // 1 page memory; around 64kb
+
   const importObj = {
+    jsMem: {
+      myJsMem: jsMemory
+    },
     console: {
       log: () => {
         console.log("Just logging from 'main.js'");
@@ -20,13 +26,14 @@ async function init() {
   const sumFunction = wasm.instance.exports.sum;
 
   // accessing memory from wasm
-  const wasmMemory = wasm.instance.exports.wasmMem;
-  console.log({wasmMemory});
+  // const wasmMemory = wasm.instance.exports.wasmMem;
+  // console.log({wasmMemory});
 
   // displaying the data from memory
-  const uInt8Array = new Uint8Array(wasmMemory.buffer, 0, 2);
-  const textFromWasm = new TextDecoder().decode(uInt8Array);
-  console.log('Text from wasm memory : ', textFromWasm);
+  console.log({jsMemory});
+  const uInt8Array = new Uint8Array(jsMemory.buffer, 0, 5);
+  const textFromWasmInJsMem = new TextDecoder().decode(uInt8Array);
+  console.log('Text from wasm memory inside Js created memory: ', textFromWasmInJsMem);
 
   const a = prompt('Enter first value to be added :', 13);
   const b = prompt('Enter second value to be added :', 10);

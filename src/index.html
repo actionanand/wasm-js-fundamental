@@ -14,14 +14,14 @@
 <!-- We can create memory in webassembly  and export it to js  -->
 <!-- we can create memory in js and import it to webassembly -->
 <!-- memory 1 means => 1 page of memory; page is around 64kb -->
-<!-- export memory 0 means first index of created memory  -->
-<!-- $mem is the alias -->
-<!-- `(data (i32.const 0) "Hi")` means loading "Hi" at the index 0 in the memory  -->
+<!-- `(data (i32.const 0) "Hello")` means loading "Hello" at the index 0 in the memory  -->
+
 
 <!-- (module
   (import "console" "log" (func $myLog))
   (import "console" "error" (func $myErrorLog))
-  (memory 1)
+  (memory (import "jsMem" "myJsMem") 1)
+  (data (i32.const 0) "Hello")
   (func $sum (param $a i32) (param $b i32) (result i32)
     call $myLog
     call $myErrorLog
@@ -29,22 +29,5 @@
     local.get $b
     i32.add
   )
-  (export "wasmMem" (memory 0))
-  (export "sum" (func $sum))
-) -->
-
-<!-- (module
-  (import "console" "log" (func $myLog))
-  (import "console" "error" (func $myErrorLog))
-  (memory $mem 1)
-  (data (i32.const 0) "Hi")
-  (func $sum (param $a i32) (param $b i32) (result i32)
-    call $myLog
-    call $myErrorLog
-    local.get $a
-    local.get $b
-    i32.add
-  )
-  (export "wasmMem" (memory $mem))
   (export "sum" (func $sum))
 ) -->
